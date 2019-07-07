@@ -11,4 +11,8 @@ class Project extends Model
     ];
 
     // protected $guarded = [];
+
+    public function tasks() { // this will create relationship between Project table and tasks table
+        return $this->hasMany(Task::class);
+    }
 }
