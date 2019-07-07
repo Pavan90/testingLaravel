@@ -88,10 +88,18 @@ class TutsController extends Controller
 
     public function store(){
 
-        Project::create([
-            'title' => request('title'),
-            'description' => request('description')
+        $attributes = request()->validate([ // validate method will validate the fields from server side.
+            'title' => ['required', 'min:3', 'max:255'],
+            'description' => ['required', 'min:3']
         ]);
+
+        // return $attributes;
+
+        Project::create($attributes);
+                // Project::create([
+                //     'title' => request('title'),
+                //     'description' => request('description')
+                // ]);
 
         // $project = new Project();
 
